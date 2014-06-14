@@ -1,0 +1,4 @@
+For the music dataset, after going through the training set and visualizing it, it seems
+that the variable "rock" is most useful. It is able to split the data such that either 
+majority has positive labels or majority has negative labels which is a good thing for 
+short trees.

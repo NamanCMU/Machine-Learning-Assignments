@@ -1,0 +1,5 @@
+On the training data, Education dataset gets an error of 19.9% whereas Music Dataset gets
+an error of 9.9%. Hence, Music Dataset is more accurate on the Training set.
+
+On the testing data, Education dataset gets an error of 23.38% whereas the Music Dataset gets
+and error of 10.89%. Hence, Music Dataset is more accuracte on the Testing set also.

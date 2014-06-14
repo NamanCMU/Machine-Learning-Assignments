@@ -1,0 +1,2 @@
+After trying with different values, value of 0.1 increases the accuracy rom 0.8056 to 0.8333. If the value of 5 is used, the
+accuracy decreases from 0.8056 to 0.6944. Also, for values = 0.5,1,2 accuracy remains same.

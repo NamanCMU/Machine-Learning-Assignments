@@ -1,0 +1,92 @@
+import copy
+import sys
+
+### Reading Training Data from '9Cat-Train.labeled' file
+with open('9Cat-Train.labeled') as f:
+	array = []
+	for line in f:
+		line = line.split()
+		temparray = []	
+		for i in xrange(0,len(line),2):
+			temparray.append(line[i+1])
+		array.append(temparray)
+###
+
+### Reading Development Data from '9Cat-Dev.labeled' file
+with open('9Cat-Dev.labeled') as f:
+	arraydev = []
+	for line in f:
+		line = line.split()
+		temparray = []	
+		for i in xrange(0,len(line),2):
+			temparray.append(line[i+1])
+		arraydev.append(temparray)
+###
+
+### Reading Testing Data from the file given as terminal arguement
+file_terminal_arg = sys.argv[1]
+with open(file_terminal_arg) as f:
+	arraytest = []
+	for line in f:
+		line = line.split()
+		temparray = []	
+		for i in xrange(0,len(line),2):
+			temparray.append(line[i+1])
+		arraytest.append(temparray)
+###
+
+Hypothesis = copy.deepcopy(array[0][0:-1]) # Default Hypothesis 
+
+### Generating the Final Hypothesis using FIND-S Algorithm: Going from Most Specific Hypothesis to more General Hypothesis
+fwrite = open('partA4.txt','w')
+for count in xrange(1,len(array)):
+	for i in xrange(0,len(array[count]) - 1):
+		if array[count][-1] == 'low':  # Ignoring Negative Examples
+			break		
+		if array[count][i] == Hypothesis[i]: # Continue if the attribute of the example is same as Hypothesis
+			continue
+		else: # If attributes are different, change the Hypothesis to make it more general
+			Hypothesis[i] = 1
+		if count%30 == 0:
+			string_hyp = str(Hypothesis) + "\n"			
+			fwrite.write(string_hyp)
+			
+#print 'Hyp: ', Hypothesis
+fwrite.close()
+###
+
+### Calculating the Misclassification Rate on the Development Set
+correct_prediction = 0
+for countdev in xrange(0,len(arraydev)):
+	predictedlabel = 'high'	
+	for idev in xrange(0,len(arraydev[countdev]) - 1):
+		if Hypothesis[idev] == 1 or Hypothesis[idev] == arraydev[countdev][idev]: # No change to predictedlabel
+			continue		
+		else: # Change predictedlabel to low and break 
+			predictedlabel = 'low'
+			break
+	if predictedlabel == arraydev[countdev][-1]: # If prediction is correct, increment the count of correct_prediction
+		correct_prediction += 1
+#print 'Misclassification Rate: ', 1.0 - float(correct_prediction)/len(arraydev)			
+###
+
+### Printing Output
+print pow(2,9)  #Size of input space
+print len(str(pow(2,pow(2,9))))  # Number of digits in the size of Concept Space
+size_Hypothesis_space = pow(3,9) + 1
+print size_Hypothesis_space   # Size of the Hypothesis Space
+Misclassification_rate = 1.0 - float(correct_prediction)/len(arraydev)
+print Misclassification_rate  # Misclassification Rate
+###
+
+### Predicting the output on the Testing set
+for counttest in xrange(0,len(arraytest)):
+	prediction = 'high'
+	for itest in xrange(0,len(arraytest[counttest]) - 1):
+		if Hypothesis[itest] == 1 or Hypothesis[itest] == arraytest[counttest][itest]:
+			continue		
+		else: # Change predictedlabel to low and break 
+			prediction = 'low'
+			break
+	print prediction
+###			

@@ -1,0 +1,2 @@
+The two lists look very similar to each other. There are lot of overlapping words like the, to, of, in and many more. 
+These words do not provide any vital information about the document.

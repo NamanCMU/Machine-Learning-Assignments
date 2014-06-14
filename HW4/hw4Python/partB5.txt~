@@ -1,0 +1,5 @@
+The hypothesis contained in the version space are not able to predict the output of the test set examples unanimously.
+For all the examples of the test set, half of the hypothesis says "high" and the rest half says "low", hence we can not
+conclude anything from that.
+The thing which can be learned is that although all the hypothesis in the Version Space are consistent with the 
+Training Set, it is not necessary that it will give accurate results for the Testing set. It can completely fail on the new examples.

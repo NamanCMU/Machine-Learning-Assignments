@@ -1,0 +1,2 @@
+The words found here looks like they are very rarely used in the documents. There are no overlapping words between the two lists.
+These words are completely different from the words printed out in the previous question. Those words were very common whereas these words are very rare.

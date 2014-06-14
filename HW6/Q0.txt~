@@ -1,0 +1,4 @@
+Yes, Decision Trees is appropriate these two datasets.
+1) First of all, the Output function is a a discrete valued function.
+2) Also, all the instances can be described by attribute and value combination.
+This is true for both Music and Education dataset.

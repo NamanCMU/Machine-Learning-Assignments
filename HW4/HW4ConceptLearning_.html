@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1187.4">
+  <style type="text/css">
+    p.p3 {margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times}
+    p.p4 {margin: 0.0px 0.0px 12.0px 0.0px; font: 14.0px Times}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Times}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Times; min-height: 18.0px}
+    li.li5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Times}
+    span.s1 {text-decoration: underline ; color: #0000ee}
+    span.s2 {color: #ff2500}
+    span.s3 {color: #0056d6}
+    ol.ol1 {list-style-type: decimal}
+    ul.ul1 {list-style-type: disc}
+  </style>
+</head>
+<body>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; text-align: center; font: 18.0px Times"><b>Homework Assignment#4 Concept Learning</b></h2>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; text-align: center; font: 14.0px Times"><b>Type: Autolab Assignment<br>
+Due Date: 1/29/2014 at 11:59 pm<br>
+TA-in-charge: Fatima Al-Raisi</b></h3>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times"><b>Instructions</b></h3>
+<p class="p4">This assignment consists of two parts. You will implement and run the Find-S and List-Then-Eliminate algorithms, and also answer some questions about the input and output of your programs.</p>
+<p class="p4">The programs you write will be automatically graded using the CMU Autolab system. You may write your programs in Python or Java. However, you should use the same language for all parts below. The code which you write will be executed remotely on the server and the results will be used to automatically assign you a grade. The Autolab interface for this course is at <a href="https://autolab.cs.cmu.edu/10601a-s14"><span class="s1">https://autolab.cs.cmu.edu/10601a-s14</span></a>. You can sign in using your andrew credentials.</p>
+<p class="p4">Depending on your choice of programming language, download from autolab the correct tar file<span class="Apple-converted-space">  </span>'hw4Python.tar', or 'hw4Java.tar'. The tar file contains each of the files you need to complete this assignment in addition to 'Collaboration.txt'. Make sure to answer the questions in the 'Collaboration.txt' file as per the course collaboration policy. <i>Do not modify the structure of the directory or rename the files therein</i>.<span class="Apple-converted-space">  </span>Answer the questions below by completing the corresponding file, then compress this directory as a<b><i> tar ﬁle</i></b> and submit to Autolab online. <br>
+<br>
+You are allowed a maximum of 20 submissions up to the <span class="s2"><b>due date Wednesday January 29 2014 at 11:59 pm.</b></span><span class="Apple-converted-space"> </span></p>
+<p class="p4">You are also provided with another tar file, 'hw4data.tar', containing data and example output files. Information about the example output files can be found in hw4data\README.txt. Please make sure to read this file before interpreting the contents of the provided example output.<span class="Apple-converted-space"> </span></p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times"><b>Problem</b></h3>
+<p class="p4">In this assignment, you will work on the task of determining whether the risk of defaulting on a loan is "high" or "low," based on a set of binary attributes. <br>
+<br>
+For each part below, you are provided with a <i>training dataset,</i> including instances with different values for the attributes and a "high" or "low" label for each instance ("high" is the positive label). You are also provided with a <i>development dataset</i> to develop and test your code. Your submitted code will be tested on the server using a different, <i>test dataset</i> that you do not have access to.<span class="Apple-converted-space">  </span>Your program should accept a file, the test data, as a command line argument. You can test your code by passing the development data file as an argument. The test data file has the same format as the development data file.</p>
+<p class="p4">Using three different datasets is typical in machine learning tasks. <i>Training data</i> is used to inductively learn a hypothesis. Training often involves fitting many parameters, although in this assignment it involves filtering hypotheses. <i>Development data</i> is often used for initial testing, deciding among several alternatives, and possibly for tuning of a few additional parameters. In this assignment, you will use it primarily to test your code. A third dataset, <i>test data</i>, is used to evaluate the system and report its performance and should not, therefore, be used in training or developing the system.<span class="Apple-converted-space"> </span></p>
+<p class="p4"><b>Part A: The 'Risk-9Cat' task and the FIND-S algorithm</b></p>
+<p class="p4">In this part, you are provided with a training dataset '9Cat-Train.labeled' including examples with different values for 9 binary attributes and a "high" or "low" label for each example. The task is to learn a hypothesis that best fits the data. For the Risk-9Cat task, the attributes are:</p>
+<ul class="ul1">
+  <li class="li5">Gender (Male, Female)</li>
+  <li class="li5">Age (Young, Old)</li>
+  <li class="li5">Student? (Yes, No)</li>
+  <li class="li5">PreviouslyDeclined? (Yes, No)</li>
+  <li class="li5">HairLength (Long, Short)</li>
+  <li class="li5">Employed? (Yes , No)</li>
+  <li class="li5">TypeOfColateral (House, Car)</li>
+  <li class="li5">FirstLoan (Yes, No)</li>
+  <li class="li5">LifeInsurance (Yes, No)</li>
+</ul>
+<p class="p4">In this part, your hypothesis space H should be exactly like the first one we discussed in class. Namely, it should consist of all possible conjunctions over the nine attributes, where each conjunct is of the form ATTR=[value], ATTR='?', or ATTR='null'.<span class="Apple-converted-space">  </span>In your program, you can choose to exclude the possibility “ATTR=null”, and find an alternative way to represent the single hypothesis that always returns “False”.<br>
+<br>
+You are also provided with a development dataset '9Cat-Dev.labeled' to develop and test your code.<br>
+The command which will be used to run your program on the server is basically (for java and python respectively):<br>
+java partA testFileName<br>
+python partA.py testFileName</p>
+<p class="p3"><b>In the file 'partA', write a program that:</b></p>
+<ol class="ol1">
+  <li class="li5">Prints (to standard output), by itself on the first line, the size of the input space (number of possible unique inputs).</li>
+  <li class="li5">Let |C| = the size of the concept space (the space of all possible concepts; i.e., Boolean functions of the input). Prints, by itself on the next line, <i>the number of decimal digits in |C|</i>. <br>
+For example, if the size of the concept space is 128, the value printed should be 3 which is the number of decimal digits in 128.<span class="Apple-converted-space"> </span></li>
+  <li class="li5">Prints, by itself on the next line, the size of the hypothesis space H (the space of all semantically distinct conjunctions of the type described above).</li>
+  <li class="li5">Runs the FIND-S algorithm on '9Cat-Train.labeled', using the hypothesis space H described above, and prints <span class="s3"><b><i>to the file "partA4.txt" </i></b></span>the current hypothesis after every 30 training instances (namely, after 30, 60, 90,... training instances, counting both positive and negative instances).</li>
+  <li class="li5">Applies the final hypothesis to '9Cat-Dev.labeled' then prints a line with the misclassification rate (the fraction of misclassified data points; a number between 0.0 and 1.0). Note that you are provided with the correct labels in '9Cat-Dev.labeled' so you can compare the predicted labels with the correct labels and compute the misclassification rate.</li>
+  <li class="li5">Applies the final hypothesis to the data in the input file (passed as a command line argument), and prints out the classification of each instance in this set on a separate line.</li>
+</ol>
+<p class="p6"><br></p>
+<p class="p5">Check the example output file 'exampleA.txt' for the expected format of the program output.</p>
+<p class="p6"><br></p>
+<p class="p4"><b>Part B: Bias-free Learning, the 'Risk-4Cat' task and the LIST-THEN-ELIMINATE algorithm</b></p>
+<p class="p4">In this part, you will attempt to learn without any bias. Your hypotheses space H will be equal to the concept space. Namely, H contains not only conjunctions but also every other possible binary function. The task is to run the LIST-THEN-ELIMINATE algorithm on the training data, keeping track of the version space, and then, for every test instance, hold a vote among the members of the final version space.<br>
+<br>
+To reduce the computational complexity, we reduce the task to involve only the first four attributes. Thus, for the 'Risk-4Cat' task, the attributes are:</p>
+<ul class="ul1">
+  <li class="li5">Gender (Male, Female)</li>
+  <li class="li5">Age (Young, Old)</li>
+  <li class="li5">Student? (Yes, No)</li>
+  <li class="li5">PreviouslyDeclined? (Yes, No)</li>
+</ul>
+<p class="p6"><br></p>
+<p class="p4">You are provided with a training dataset D='4Cat-Train.labeled' including instances with different values for the 4 attributes and a "high" or "low" label for each such instance. You are also provided with a development dataset '4Cat-Dev.labeled' to develop and test your code. Your program should have one command line argument which is a test data file that has the same format as the development data file. The command which will be used to run your program on the server is basically (for java and python respectively):<br>
+java partB testFileName<br>
+python partB.py testFileName</p>
+<p class="p3"><b>In the file 'partB', write a program that:</b></p>
+<ol class="ol1">
+  <li class="li5">Prints (to standard output), by itself on the first line, the size of the input space (number of possible unique inputs).</li>
+  <li class="li5">Prints, by itself on the next line, the size of the concept space (the space of all possible concepts; i.e., Boolean functions of the input).</li>
+  <li class="li5">Runs the 'List-Then-Eliminate' algorithm, using the entire concept space, on D='4Cat-Train.labeled', settles on a version space VS(H,D), then prints out, on a new line, the size of that version space (number of remaining hypotheses consistent with the training data).</li>
+  <li class="li5">For each instance in the test data (where the test file is passed as a command line argument), takes a vote among the hypotheses in the version space, and prints a line containing two numbers: #high, #low, separated by a space.</li>
+  <li class="li5">How well did it do? What, if anything, can you learn from this? <span class="s3"><b><i>Save your answer to this question (B5) in the file 'partB5.txt'</i></b></span></li>
+</ol>
+<p class="p5">Check the example output file 'exampleB.txt' for the expected format of the program output.</p>
+<p class="p6"><br></p>
+</body>
+</html>
